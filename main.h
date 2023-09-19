@@ -6,6 +6,9 @@ void (*(get_p_function(const char *s)))(va_list ap, unsigned int *n_chars);
 void p_c(va_list ap, unsigned int *n_chars);
 void p_s(va_list ap, unsigned int *n_chars);
 void p_p(va_list ap, unsigned int *n_chars);
+void p_d(va_list ap, unsigned int *n_chars);
+void p_i(va_list ap, unsigned int *n_chars);
+
 /**
  * struct sp - a structure
  *

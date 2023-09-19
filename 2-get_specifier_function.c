@@ -11,12 +11,14 @@
  * Description: calls back a function when it finds a match
  * Return: nothing.
  */
-void (*(get_p_function(const char *s)))(va_list, unsigned int *)
+void (*get_p_function(const char *s))(va_list, unsigned int *)
 {
 	sp_t sf[] = {
 		{"c", p_c},
 		{"s", p_s},
 		{"%", p_p},
+		{"d", p_d},
+		{"i", p_i},
 		{NULL, NULL}
 	};
 	int i;

@@ -69,3 +69,78 @@ void p_p(va_list ap, unsigned int *n_chars)
 	/* increase the number of printed characters */
 	(*n_chars)++;
 }
+/**
+ * p_d - function handles the format specifier %d
+ * @ap: variadic list containing arguments
+ * @n_chars: number of chars printed so far
+ *
+ * Description: handles the printing of integers
+ * Return: nothing.
+ */
+void p_d(va_list ap, unsigned int *n_chars)
+{
+	char *d;
+	int num, tmp, size, i;
+
+	/* d holds the integer as a string */
+	num = va_arg(ap, int);
+	tmp = num;
+	size = 0;
+	while (tmp != 0)
+	{
+		tmp /= 10;
+		size++;
+	}
+	d = malloc(size + 1);
+	if (d != NULL)
+	{
+		for (i = (size - 1); i >= 0; i--)
+		{
+			d[i] = '0' + (num % 10);
+			num /= 10;
+		}
+		d[size] = '\0';
+	}
+	write(1, d, size);
+	/* increase number of printed characters */
+	(*n_chars) += size;
+	free(d);
+}
+/**
+ * p_i - function handles the format specifier %i
+ * @ap: variadic list containing arguments
+ * @n_chars: number of characters printed so far
+ *
+ * Description: handles the printing of integers
+ * Return: nothing.
+ */
+void p_i(va_list ap, unsigned int *n_chars)
+{
+	char *d;
+	int num, tmp, size, i;
+
+	/* holds the integer as a string */
+	num = va_arg(ap, int);
+	tmp = num;
+	size = 0;
+	while (tmp != 0)
+	{
+		tmp /= 10;
+		size++;
+	}
+	/* allocate memory for d */
+	d = malloc(size + 1);
+	if (d != NULL)
+	{
+		for (i = (size - 1); i >= 0; i--)
+		{
+			d[i] = '0' + (num % 10);
+			num /= 10;
+		}
+		d[size] = '\0';
+	}
+	write(1, d, size);
+	/* increase number of printed characters */
+	(*n_chars) += size;
+	free(d);
+}
