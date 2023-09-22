@@ -13,7 +13,7 @@
  * function printing a special character from an argument.
  * Return: nothing.
  */
-void p_c(va_list ap, unsigned int *n_chars)
+void p_c(va_list ap, int *n_chars)
 {
 	int c;
 
@@ -33,7 +33,7 @@ void p_c(va_list ap, unsigned int *n_chars)
  * specifier %s in the _printf function.
  * Return: nothing.
  */
-void p_s(va_list ap, unsigned int *n_chars)
+void p_s(va_list ap, int *n_chars)
 {
 	char *s;
 	int size;
@@ -57,7 +57,7 @@ void p_s(va_list ap, unsigned int *n_chars)
  * Description: this function handles the printing of %
  * Return: nothing.
  */
-void p_p(va_list ap, unsigned int *n_chars)
+void p_p(va_list ap, int *n_chars)
 {
 	(void)ap;
 	char p;
@@ -77,7 +77,7 @@ void p_p(va_list ap, unsigned int *n_chars)
  * Description: handles the printing of integers
  * Return: nothing.
  */
-void p_d(va_list ap, unsigned int *n_chars)
+void p_d(va_list ap, int *n_chars)
 {
 	char *d;
 	int num, tmp, size, i;
@@ -114,7 +114,7 @@ void p_d(va_list ap, unsigned int *n_chars)
  * Description: handles the printing of integers
  * Return: nothing.
  */
-void p_i(va_list ap, unsigned int *n_chars)
+void p_i(va_list ap, int *n_chars)
 {
 	char *d;
 	int num, tmp, size, i;

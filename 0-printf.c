@@ -16,9 +16,9 @@ int _printf(const char *format, ...)
 {
 	const char *current;
 	va_list ap;
-	unsigned int n_chars;
+	int n_chars;
 
-	void (*ptr)(va_list, unsigned int *);
+	void (*ptr)(va_list, int *);
 
 	if (format == NULL)
 		return (-1);
