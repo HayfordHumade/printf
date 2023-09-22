@@ -37,11 +37,6 @@ int _printf(const char *format, ...)
 				ptr(ap, &n_chars);
 			current += 2;
 		}
-		else if (*current == '\\')
-		{
-			/* do something. */
-			current += 2;
-		}
 		else
 		{
 			write(1, current, 1);
