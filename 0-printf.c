@@ -14,19 +14,21 @@
  */
 int _printf(const char *format, ...)
 {
-	const char *current;
-	va_list ap;
-	int n_chars;
-
-	void (*ptr)(va_list, int *);
-
 	if (format == NULL)
 		return (-1);
+	const char *current;
+	char *result;
+	va_list ap;
+	int size, position;
+	void (*ptr)(va_list, char *, int *);
 
 	current = format;
 	va_start(ap, format);
-
-	while (*current != '\0')
+	while (format[size] != '\0')
+		size++;
+	result = malloc(size + 1);
+	position = 0;
+	while (*current != '\0' && result != NULL)
 	{
 		if (*current == '%')
 		{
@@ -34,17 +36,16 @@ int _printf(const char *format, ...)
 			ptr = get_p_function(current + 1);
 			/* call the function */
 			if (ptr != NULL)
-				ptr(ap, &n_chars);
+				ptr(ap, result, &position);
 			current += 2;
 		}
 		else
-		{
-			write(1, current, 1);
-			n_chars++;
-			current++;
-		}
+			result[position++] = *(current++);
 	}
 	va_end(ap);
 
-	return (n_chars);
+	result[position] = '\0';
+	write(1, result, position);
+	/* printf("%d\n", position); */
+	return (position);
 }

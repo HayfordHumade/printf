@@ -6,58 +6,62 @@
 /**
  * p_c - function handles the format specifier %c
  * @ap: variadic list which contains arguments
- * @n_chars: number of characters printed so far
+ * @result: buffer to store the output
+ * @position: number of characters printed so far
  *
  * Description: this function handles character arguments using the
  * specifier %c in the _printf function.
  * function printing a special character from an argument.
  * Return: nothing.
  */
-void p_c(va_list ap, int *n_chars)
+void p_c(va_list ap, char *result, int *position)
 {
 	int c;
 
 	/* c holds the character to be printed */
 	c = va_arg(ap, int);
 	/* print character to the screen */
-	write(1, &c, 1);
-	/* increase the number of printed characters by 1 */
-	(*n_chars)++;
+	result[*position] = c;
+	/* increase position */
+	(*position)++;
 }
 /**
  * p_s - function handles the format specifier %s
  * @ap: variadic list which contains arguments
- * @n_chars: number of characters printed so far
+ * @result: buffer to store the output
+ * @position: number of characters printed so far
  *
  * Description: this function handles string arguments using the
  * specifier %s in the _printf function.
  * Return: nothing.
  */
-void p_s(va_list ap, int *n_chars)
+void p_s(va_list ap, char *result, int *position)
 {
 	char *s;
-	int size;
+	int size, i;
 
-	/* s holds the string to be printed */
 	size = 0;
+	/* s holds the string to be printed */
 	s = va_arg(ap, char *);
-	/* compute size of string */
-	while (s[size] != '\0')
-		size++;
-	/* print string on screen */
-	write(1, s, size);
-	/* increase the number of printed characters */
-	(*n_chars) += size;
+	/* check s for NULL */
+	if (s != NULL)
+	{
+		i = 0;
+		/* store string in result */
+		while (s[i] != '\0')
+			result[(*position)++] = s[i++];
+	}
 }
 /**
  * p_p - function handles the format specifier %% or \%
  * @ap: variadic list which contains arguments
- * @n_chars: number of characters printed so far
+ * @result: buffer to store the output
+ * @position: number of characters printed so far
  *
  * Description: this function handles the printing of %
  * Return: nothing.
  */
-void p_p(va_list ap, int *n_chars)
+void p_p(va_list ap, char *result, int *position)
 {
 	(void)ap;
 	char p;
@@ -65,82 +69,7 @@ void p_p(va_list ap, int *n_chars)
 	/* p holds the % character */
 	p = '%';
 	/* write the % character to screen */
-	write(1, &p, 1);
-	/* increase the number of printed characters */
-	(*n_chars)++;
-}
-/**
- * p_d - function handles the format specifier %d
- * @ap: variadic list containing arguments
- * @n_chars: number of chars printed so far
- *
- * Description: handles the printing of integers
- * Return: nothing.
- */
-void p_d(va_list ap, int *n_chars)
-{
-	char *d;
-	int num, tmp, size, i;
-
-	/* d holds the integer as a string */
-	num = va_arg(ap, int);
-	tmp = num;
-	size = 0;
-	while (tmp != 0)
-	{
-		tmp /= 10;
-		size++;
-	}
-	d = malloc(size + 1);
-	if (d != NULL)
-	{
-		for (i = (size - 1); i >= 0; i--)
-		{
-			d[i] = '0' + (num % 10);
-			num /= 10;
-		}
-		d[size] = '\0';
-	}
-	write(1, d, size);
-	/* increase number of printed characters */
-	(*n_chars) += size;
-	free(d);
-}
-/**
- * p_i - function handles the format specifier %i
- * @ap: variadic list containing arguments
- * @n_chars: number of characters printed so far
- *
- * Description: handles the printing of integers
- * Return: nothing.
- */
-void p_i(va_list ap, int *n_chars)
-{
-	char *d;
-	int num, tmp, size, i;
-
-	/* holds the integer as a string */
-	num = va_arg(ap, int);
-	tmp = num;
-	size = 0;
-	while (tmp != 0)
-	{
-		tmp /= 10;
-		size++;
-	}
-	/* allocate memory for d */
-	d = malloc(size + 1);
-	if (d != NULL)
-	{
-		for (i = (size - 1); i >= 0; i--)
-		{
-			d[i] = '0' + (num % 10);
-			num /= 10;
-		}
-		d[size] = '\0';
-	}
-	write(1, d, size);
-	/* increase number of printed characters */
-	(*n_chars) += size;
-	free(d);
+	result[*position] = p;
+	/* increase position */
+	(*position)++;
 }

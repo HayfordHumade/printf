@@ -5,20 +5,17 @@
 #include "main.h"
 /**
  * get_p_function - calls back a function
- *
  * @s: has the character to compare with
  *
  * Description: calls back a function when it finds a match
  * Return: nothing.
  */
-void (*get_p_function(const char *s))(va_list, int *)
+void (*get_p_function(const char *s))(va_list, char *, int *)
 {
 	sp_t sf[] = {
 		{"c", p_c},
 		{"s", p_s},
 		{"%", p_p},
-		{"d", p_d},
-		{"i", p_i},
 		{NULL, NULL}
 	};
 	int i;
