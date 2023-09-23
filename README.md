@@ -25,3 +25,6 @@ This README file lists all the files in this directory and also describes its pr
 
 4. Filename: &emsp; main.h
    - Description: &emsp; a header file
+5. This was done with planning
+
+6. This will make it work as  we want it to 
