@@ -29,4 +29,4 @@ This README file lists all the files in this directory and also describes its pr
 
 6. This will make it work as  we want it to 
 
-7.
+7. we have it working 
