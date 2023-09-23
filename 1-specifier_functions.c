@@ -38,9 +38,8 @@ void p_c(va_list ap, char *result, int *position)
 void p_s(va_list ap, char *result, int *position)
 {
 	char *s;
-	int size, i;
+	int i;
 
-	size = 0;
 	/* s holds the string to be printed */
 	s = va_arg(ap, char *);
 	/* check s for NULL */
@@ -63,11 +62,10 @@ void p_s(va_list ap, char *result, int *position)
  */
 void p_p(va_list ap, char *result, int *position)
 {
-	(void)ap;
-	char p;
-
 	/* p holds the % character */
-	p = '%';
+	char p = '%';
+
+	(void)ap;
 	/* write the % character to screen */
 	result[*position] = p;
 	/* increase position */

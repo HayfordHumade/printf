@@ -14,14 +14,14 @@
  */
 int _printf(const char *format, ...)
 {
-	if (format == NULL)
-		return (-1);
 	const char *current;
 	char *result;
 	va_list ap;
 	int size, position;
 	void (*ptr)(va_list, char *, int *);
 
+	if (format == NULL)
+		return (-1);
 	current = format;
 	va_start(ap, format);
 	while (format[size] != '\0')
